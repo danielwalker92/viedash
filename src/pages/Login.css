@@ -12,6 +12,29 @@ h1 {
     font-size: 4rem;
   }
   
-  p {
-    font-size: 2rem;
-  }
+p {
+  font-size: 1.5rem;
+}
+
+.app-intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: .5em;
+}
+
+.app-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: .5em;
+}
+
+.app-login section {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
