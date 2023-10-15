@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './Login.css'
 
-const Login = () => {
+const Login = ({ checkLog }) => {
     const [ email, setEmail ] = useState('') 
     const [ password, setPassword ] = useState('') 
     const [ verifyPassword, setVerifyPassword ] = useState('') 
@@ -25,6 +25,7 @@ const Login = () => {
         })
 
         const data = await response.json()
+        if (data.status == 'ok') checkLog()
         console.log(data)
     }
 

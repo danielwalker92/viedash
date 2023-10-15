@@ -1,11 +1,25 @@
+import { useState } from 'react'
 import './App.css'
 import Login from './pages/Login'
+import Home from './pages/Home'
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const checkLog = () => {
+    setIsLoggedIn(!isLoggedIn)
+  }
 
-  return (
+  console.log(isLoggedIn)
+
+  return isLoggedIn ?
+  (
     <>
-      <Login />
+      <Home checkLog={checkLog} />
+    </>
+  ) :
+  (
+    <>
+    <Login checkLog={checkLog} />
     </>
   )
 }
