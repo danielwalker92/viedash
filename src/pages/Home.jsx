@@ -1,12 +1,11 @@
 import './Home.css'
+import Nav from '../components/ui/Nav'
 
 const Home = ({ checkLog }) => {
     return (
-        <div>
-            <h1>Home</h1>
-            <p>Welcome to your dashboard</p>
-            <button onClick={checkLog}>Logout</button>
-        </div>
+        <>
+        <Nav checkLog={checkLog}/>
+        </>
     )
 }
 

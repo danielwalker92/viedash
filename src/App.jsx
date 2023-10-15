@@ -9,8 +9,6 @@ function App() {
     setIsLoggedIn(!isLoggedIn)
   }
 
-  console.log(isLoggedIn)
-
   return isLoggedIn ?
   (
     <>
