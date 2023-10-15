@@ -4,13 +4,15 @@ import './Login.css'
 const Login = () => {
     const [ email, setEmail ] = useState('') 
     const [ password, setPassword ] = useState('') 
+    const [ verifyPassword, setVerifyPassword ] = useState('') 
     const [ modal, setModal ] = useState(false)
-    const [ loggedIn, setLoggedIn ] = useState(false)
 
     const SERVER = `${import.meta.env.VITE_SERVER_HN}${import.meta.env.VITE_SERVER_PORT}`
 
+
     const loginUser = async (e) => {
         e.preventDefault()
+        console.log(e)
         const response = await fetch(`${SERVER}/login`, {
             method: 'POST',
             headers: {
@@ -27,6 +29,8 @@ const Login = () => {
     }
 
     const registerUser = async (e) => {
+        e.preventDefault()
+
        const response = await fetch(`${SERVER}/register`, {
         method: 'POST',
         headers: {
@@ -35,11 +39,11 @@ const Login = () => {
         body: JSON.stringify({
             email,
             password,
+            verifyPassword
         }),
        })
        const data = await response.json()
        console.log(data)
-       toggleModal(e)
     }
 
     const toggleModal = (e) => {
@@ -47,6 +51,7 @@ const Login = () => {
         setModal(!modal)
         setPassword('')
         setEmail('')
+        setVerifyPassword('')
     }
  
     return  modal ? (
@@ -54,7 +59,7 @@ const Login = () => {
                 <div className="app-intro">
                     <h1>Register</h1>
                 </div>
-                <form className="app-login"> 
+                <form className="register-login" onSubmit={registerUser}> 
                     <input 
                         type="text" 
                         placeholder="Email" 
@@ -67,6 +72,13 @@ const Login = () => {
                         value={password}
                         onChange={e => setPassword(e.target.value)}    
                     />
+                    <input
+                        type="password" 
+                        placeholder="Re-enter password"
+                        className='verify-pass'
+                        value={verifyPassword}
+                        onChange={e => setVerifyPassword(e.target.value)}
+                    />
                     <section>
                     <input 
                         type="button"
@@ -74,9 +86,8 @@ const Login = () => {
                         onClick={toggleModal}
                     />
                     <input 
-                        type="button"
+                        type="submit"
                         value="Register"
-                        onClick={registerUser}
                     />
                     </section>
                 </form>
@@ -84,8 +95,8 @@ const Login = () => {
     ) : (
             <main>
                 <div className="app-intro">
-                    <h1>Viedash</h1>
-                    <p>your life, simplified</p>
+                    <h1>viedash</h1>
+                    <p>life dashboard</p>
                 </div>
                 <form className="app-login" onSubmit={loginUser}> 
                     <input 
@@ -108,7 +119,6 @@ const Login = () => {
                     <input 
                         type="button"
                         value="Register User"
-                        className="register-btn"
                         onClick={toggleModal}
                     />
                     </section>
